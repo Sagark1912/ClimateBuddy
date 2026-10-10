@@ -1,0 +1,6 @@
+{
+  "name": "ClimateBuddy - AI Climate Copilot",
+  "description": "Turns real-time climate, air quality, and environmental data into personalized, actionable decisions that protect people, help farmers, save resources, and build greener habits.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

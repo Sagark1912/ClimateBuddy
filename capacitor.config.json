@@ -1,0 +1,20 @@
+{
+  "android": {
+    "buildOptions": {
+      "releaseType": "APK"
+    }
+  },
+  "plugins": {
+    "SplashScreen": {
+      "showSpinner": false,
+      "backgroundColor": "#020617",
+      "launchShowDuration": 2000
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  },
+  "appName": "ClimateBuddy",
+  "webDir": "dist",
+  "appId": "com.climatebuddy.app"
+}

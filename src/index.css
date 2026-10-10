@@ -1,0 +1,335 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   CLIMATEBUDDY — DARK NEUMORPHISM / SOFT UI DESIGN SYSTEM
+   Base Color: #1a2035 (Deep Navy Slate)
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  --neu-base:        #0f172a;
+  --neu-base-light:  #1e293b;
+  --neu-base-dark:   #020617;
+  --neu-shadow-dark: rgba(0, 0, 0, 0.65);
+  --neu-shadow-lite: rgba(255, 255, 255, 0.05);
+
+  /* Raised (extruded) — element pops OUT */
+  --neu-raised:
+    -5px -5px 12px var(--neu-shadow-lite),
+     5px  5px 12px var(--neu-shadow-dark);
+
+  /* Raised subtle */
+  --neu-raised-sm:
+    -3px -3px 8px var(--neu-shadow-lite),
+     3px  3px 8px var(--neu-shadow-dark);
+
+  /* Pressed (inset) — element sinks IN */
+  --neu-inset:
+    inset -3px -3px 8px var(--neu-shadow-lite),
+    inset  3px  3px 8px var(--neu-shadow-dark);
+
+  /* Inset subtle */
+  --neu-inset-sm:
+    inset -2px -2px 5px var(--neu-shadow-lite),
+    inset  2px  2px 5px var(--neu-shadow-dark);
+
+  /* Accent glow for emerald */
+  --neu-glow-emerald: 0 0 20px rgba(52, 211, 153, 0.12);
+  --neu-glow-teal:    0 0 20px rgba(45, 212, 191, 0.10);
+
+  /* Brand accents */
+  --accent-emerald: #34d399;
+  --accent-teal:    #2dd4bf;
+  --accent-sky:     #38bdf8;
+  --accent-amber:   #fbbf24;
+  --accent-rose:    #fb7185;
+}
+
+/* ── Base Reset ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  overflow-x: hidden;
+  height: 100%;
+  background-color: var(--neu-base);
+}
+
+#root {
+  min-height: 100%;
+  min-height: 100dvh;
+  background-color: var(--neu-base);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #c8d6e5;
+}
+
+/* ── Neumorphic Utility Classes ─────────────────────── */
+
+/* Raised card — floats above the surface */
+.neu-card {
+  background: var(--neu-base);
+  box-shadow: var(--neu-raised);
+  border-radius: 1rem;
+}
+
+.neu-card-sm {
+  background: var(--neu-base);
+  box-shadow: var(--neu-raised-sm);
+  border-radius: 0.75rem;
+}
+
+/* Flat panel — sits flush, subtle depth */
+.neu-flat {
+  background: var(--neu-base-light);
+  border-radius: 1rem;
+}
+
+/* Inset panel — pressed into the surface */
+.neu-inset {
+  background: var(--neu-base);
+  box-shadow: var(--neu-inset);
+  border-radius: 0.75rem;
+}
+
+.neu-inset-sm {
+  background: var(--neu-base);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: 0.5rem;
+}
+
+/* Button raised → pressed on active */
+.neu-btn {
+  background: var(--neu-base);
+  box-shadow: var(--neu-raised-sm);
+  border-radius: 0.625rem;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
+  border: none;
+  color: #94a3b8;
+}
+
+.neu-btn:hover {
+  box-shadow:
+    -4px -4px 10px var(--neu-shadow-lite),
+     4px  4px 10px var(--neu-shadow-dark);
+  color: #e2e8f0;
+}
+
+.neu-btn:active,
+.neu-btn-pressed {
+  box-shadow: var(--neu-inset-sm);
+  transform: scale(0.97);
+}
+
+/* Primary emerald accent button */
+.neu-btn-primary {
+  background: linear-gradient(135deg, #059669, #0d9488);
+  box-shadow:
+    -3px -3px 8px rgba(255,255,255,0.04),
+     3px  3px 8px rgba(0,0,0,0.5),
+     var(--neu-glow-emerald);
+  border-radius: 0.625rem;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.neu-btn-primary:hover {
+  background: linear-gradient(135deg, #10b981, #14b8a6);
+  box-shadow:
+    -3px -3px 8px rgba(255,255,255,0.06),
+     3px  3px 8px rgba(0,0,0,0.5),
+     0 0 28px rgba(52, 211, 153, 0.2);
+}
+
+.neu-btn-primary:active {
+  box-shadow: var(--neu-inset-sm);
+  transform: scale(0.96);
+}
+
+/* Input field */
+.neu-input {
+  background: var(--neu-base);
+  box-shadow: var(--neu-inset);
+  border-radius: 0.75rem;
+  border: none;
+  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.neu-input:focus {
+  box-shadow:
+    var(--neu-inset),
+    0 0 0 2px rgba(52, 211, 153, 0.25);
+}
+
+.neu-input::placeholder {
+  color: #475569;
+}
+
+/* Metric value display — inset trough */
+.neu-metric {
+  background: var(--neu-base-dark);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: 0.625rem;
+  padding: 0.75rem;
+}
+
+/* Pill / badge */
+.neu-pill {
+  background: var(--neu-base);
+  box-shadow: var(--neu-raised-sm);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* Accent pill variants */
+.neu-pill-emerald {
+  background: linear-gradient(135deg, rgba(5,150,105,0.2), rgba(13,148,136,0.15));
+  box-shadow: var(--neu-raised-sm), var(--neu-glow-emerald);
+  color: var(--accent-emerald);
+}
+
+.neu-pill-amber {
+  background: rgba(251,191,36,0.1);
+  box-shadow: var(--neu-raised-sm);
+  color: var(--accent-amber);
+}
+
+.neu-pill-rose {
+  background: rgba(251,113,133,0.1);
+  box-shadow: var(--neu-raised-sm);
+  color: var(--accent-rose);
+}
+
+/* Progress bar track */
+.neu-progress-track {
+  background: var(--neu-base-dark);
+  box-shadow: var(--neu-inset-sm);
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 6px;
+}
+
+.neu-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #059669, #2dd4bf);
+  box-shadow: 0 0 8px rgba(52,211,153,0.4);
+  transition: width 0.6s ease;
+}
+
+/* Divider */
+.neu-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04) 30%, rgba(255,255,255,0.04) 70%, transparent);
+  margin: 0;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar,
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.no-scrollbar, .scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--neu-base-dark); }
+::-webkit-scrollbar-thumb {
+  background: #2d3a55;
+  border-radius: 9999px;
+}
+
+/* ── Animations ────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.4s ease forwards; }
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up { animation: slide-up 0.35s ease forwards; }
+
+@keyframes neu-pulse {
+  0%, 100% { box-shadow: var(--neu-raised-sm), var(--neu-glow-emerald); }
+  50% { box-shadow: var(--neu-raised-sm), 0 0 32px rgba(52,211,153,0.25); }
+}
+.animate-neu-pulse { animation: neu-pulse 2s ease-in-out infinite; }
+
+/* ── Touch improvements ────────────────────────────── */
+button, a, [role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* ── Typography ────────────────────────────────────── */
+.neu-heading {
+  color: #e2e8f0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.neu-label {
+  color: #64748b;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.neu-value {
+  color: #f1f5f9;
+  font-weight: 700;
+}
+
+.neu-muted {
+  color: #475569;
+}
+
+/* ── Accent Glow Lines ─────────────────────────────── */
+.neu-accent-bar {
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #059669, #0d9488, transparent);
+  box-shadow: 0 0 8px rgba(52,211,153,0.3);
+}
+
+/* ── Card hover lift ───────────────────────────────── */
+.neu-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.neu-hover:hover {
+  box-shadow:
+    -7px -7px 16px var(--neu-shadow-lite),
+     7px  7px 16px var(--neu-shadow-dark);
+  transform: translateY(-2px);
+}
+
+/* ── Status dot ────────────────────────────────────── */
+.neu-dot-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
+  box-shadow: 0 0 8px rgba(52,211,153,0.6);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
