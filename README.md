@@ -14,6 +14,20 @@
 
 ---
 
+## 🏆 Hackathon Submission: SerpApi Integrations
+> [!IMPORTANT]
+> **To the Evaluators:** This project is submitted under **Track 05 Impact: Knowledge & Public Interest**. 
+
+ClimateBuddy leverages **SerpApi** as the central intelligence engine that grounds our AI’s mathematical models in **real-time, hyperlocal reality**. Without SerpApi, our AI would be guessing based on satellite models. With SerpApi, we pull live ground truth. 
+
+We utilize SerpApi to power **four distinct Live Intelligence Tasks**:
+1. 🚨 **Area Hazard & Waterlog Radar (SerpApi Google Search):** Dynamically scrapes hyperlocal municipal reports and civic news for immediate ground hazards (e.g., localized waterlogging, downed power lines) that standard radar cannot see.
+2. 💧 **Relief & Resource Finder (SerpApi Google Maps/Places):** Instantly locates the nearest public drinking water kiosks, cooling shelters, and emergency hospitals relative to the user's coordinates during extreme heatwaves.
+3. 🌤️ **Google Weather Knowledge Graph (SerpApi Google Weather):** Cross-references our Open-Meteo satellite models against the Google Weather Knowledge Graph to verify ground-truth consensus on temperature and precipitation.
+4. 📰 **Breaking Climate News Bulletins (SerpApi Google News):** Aggregates the latest IMD (Indian Meteorological Department) and climate bulletins into a real-time feed, ensuring access to official disaster warnings instantly.
+
+---
+
 ## 🚀 1. The Vision & The Problem
 
 We are facing a global climate crisis. Extreme heatwaves, unpredictable rainfall, and severe air pollution are becoming daily realities. 
@@ -34,8 +48,16 @@ How does ClimateBuddy work without a backend server?
 
 ```mermaid
 graph TD
-    A[User Selects Persona & Location] -->|Capacitor App| B(Direct Open-Meteo & Nominatim APIs)
+    A[User Selects Persona & Location] -->|Capacitor App| B(Open-Meteo & Nominatim)
+    A -->|Hyperlocal Queries| S1(SerpApi Google Search)
+    A -->|Shelter Search| S2(SerpApi Google Maps)
+    A -->|News Bulletins| S3(SerpApi Google News)
+    
     B -->|Fetches Raw Data| C{ClimateBuddy Offline AI Engine}
+    S1 -->|Ground Hazards| C
+    S2 -->|Relief Resources| C
+    S3 -->|Official Warnings| C
+    
     C -->|Calculates Risk Score| D[Composite Climate Risk Score]
     C -->|Parses Intents| E[Dynamic Offline Chatbot]
     C -->|Web Speech API| F[Native Voice Audio Briefs]
