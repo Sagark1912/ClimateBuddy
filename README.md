@@ -9,8 +9,6 @@
 
 <br />
 
-> [!TIP]
-> **Presenter Note:** Start your pitch by asking the audience: *"When you check a weather app and it says 35°C with an AQI of 150... what does that actually mean you should do? Most apps give you data. ClimateBuddy gives you decisions."*
 
 ---
 
